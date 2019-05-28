@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<script type="text/javascript">
+	function handleLoginRequest(xhr, status, args) {
+		if (args.validationFailed || !args.loggedIn) {
+			PF('dlg').jq.effect("shake", {
+				times : 5
+			}, 100);
+		} else {
+			PF('dlg').hide();
+			$('#loginLink').fadeOut();
+		}
+	}
+</script>
+
+<Style>
+.login-panel {
+	margin: 0;
+	position: absolute;
+	top: 45%;
+	left: 30%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	background-color: #cccccc;
+	font-size: 22px;
+	width: 300px;
+	border: 15px solid blue;
+	padding: 30px; /*This is to increase the login box*/
+	margin: 20px;
+}
+</Style>
+
+<Body style="background-color: black;">
+	<div class="login-panel">
+		<h:form>
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+			<p:dialog header="Login" widgetVar="dlg" resizable="true"
+				style="font-variant: small-caps;">
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="username" value="Username:" />
+					<p:inputText id="username" value="#{username}" required="true"
+						label="username" />
+
+					<h:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{password}" required="true"
+						label="password" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Login" update="growl"
+							action="#{login.validate}"
+							oncomplete="handleLoginRequest(xhr, status, args)"
+							onclick="validate()"
+							style=" position: relative; left: 90px; border: 3px solid blue; /*button positioning*/
+							padding-left: 40px; padding-top: 10px; padding-right: 40px; padding-bottom: 10px;" />
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+	</div>
+
+
+	<script>
+		function validate() {
+			var un = document.login.username.value;
+			var pw = document.login.password.value;
+			var valid = false;
+
+			if (un == "wisdom" && pw == "123") {
+				//if ((un == "wisdom") &amp;&amp; (pw == "123")) {
+
+				alert("Login was successful");
+				window.location = "www.google.ie";
+			} else {
+				alert("Wrong password or username")
+				//
+			}
+		}
+	</script>
+
+</Body>
+</html>

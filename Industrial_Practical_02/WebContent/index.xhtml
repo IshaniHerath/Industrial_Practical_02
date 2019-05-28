@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<Style>
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 40%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+</Style>
+	</h:head>
+
+	<h:body>
+
+		<h:form>
+			<p:layout style="min-width:1200px;min-height:600px;">
+				<p:layoutUnit position="west" resizable="true" size="200">
+					<ui:include src="/menu.xhtml" />
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center">
+
+					<div class="vertical-center">
+						<h1 style="color: MediumSeaGreen;">Welcome...!</h1>
+						<p style= "position: relative; left: -60px;"> 
+						Please Login first. Click Here to 
+						<a
+							href="http://localhost:9090/Industrial_Practical_02/login.xhtml"> 
+							login! </a> </p>
+					</div>
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+
+	</h:body>
+</f:view>
+</html>
